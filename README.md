@@ -73,7 +73,6 @@ It is recommended to use Packer to manage **nvim-picgo**:
 ```
 use {
     "askfiy/nvim-picgo",
-    module="nvim-picgo",
     config = function()
         -- it doesn't require you to do any configuration
         require("nvim-picgo").setup()
