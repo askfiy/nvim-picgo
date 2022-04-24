@@ -6,7 +6,7 @@
 
                                       · picgo plugin for neovim ·
 
-![](https://img.shields.io/badge/powerful-nevim%20picgo-green)
+![](https://img.shields.io/badge/Perfect-neovim%20picgo-green)
 
 **nvim-picgo** is a picture uploading tool based on Lua language. You can quickly upload images to various image beds through it, and it will also generate links in markdown format 🔗. and store it in the clipboard.
 
