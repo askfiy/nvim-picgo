@@ -1,6 +1,7 @@
 --[[
     A picgo-core based image bed image upload tool written in pure Lua language
 ]]
+
 local notice = require("nvim-picgo.notice")
 local callback = require("nvim-picgo.callback")
 local run = require("nvim-picgo.run")
@@ -17,7 +18,7 @@ end
 
 M.upload_clipboard = function()
     -- upload image from system clipboard
-    run.register_task("picgo", {"u"}, callback.yank_to_clipboard, callback.show_error)
+    run.register_task("picgo", {"u"}, callback.yank_to_clipboard, callback.assert_error)
 end
 
 M.upload_imagefile = function()
@@ -37,8 +38,8 @@ M.upload_imagefile = function()
         image_path = home_dir .. image_path:sub(3)
     end
 
-    assert(vim.fn.filereadable(image_path) ~= 0, "The image path is not valid")
-    run.register_task("picgo", {"u", image_path}, callback.yank_to_clipboard, callback.show_error)
+    assert(vim.fn.filereadable(image_path) == 1, "The image path is not valid")
+    run.register_task("picgo", {"u", image_path}, callback.yank_to_clipboard, callback.assert_error)
 end
 
 return M

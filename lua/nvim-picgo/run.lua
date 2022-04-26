@@ -1,12 +1,8 @@
 local luv = vim.loop
 
-M = {}
+local errs = require("nvim-picgo.error")
 
-local err_keyword = {
-    "ERROR",
-    "does not exist",
-    "can't get"
-}
+M = {}
 
 function M.register_task(command, args, resolve, reject)
     local handle
@@ -36,19 +32,22 @@ function M.register_task(command, args, resolve, reject)
     luv.read_start(
         stdio[2],
         vim.schedule_wrap(
-            ---@diagnostic disable-next-line: unused-local
             function(err, data)
+                assert(not err, err)
+
                 if data then
-                    for _, e in ipairs(err_keyword) do
+                    -- failed
+                    for _, e in ipairs(errs) do
                         if data:find(e) then
                             stdio[2]:read_stop()
                             reject(data)
                         end
                     end
+
+                    -- success
                     local ss, sf = data:find("SUCCESS")
                     if ss then
-                        local length = string.len(data)
-                        local url = vim.fn.trim(string.sub(data, sf + 3, length))
+                        local url = vim.fn.trim(string.sub(data, sf + 3))
                         resolve(url)
                     end
                 end

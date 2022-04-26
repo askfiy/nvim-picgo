@@ -8,7 +8,7 @@ function M.yank_to_clipboard(url)
     vim.fn.setreg(vim.v.register, markdown_link)
 end
 
-function M.show_error(err)
+function M.assert_error(err)
     assert(not err, err)
 end
 
