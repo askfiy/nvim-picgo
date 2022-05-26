@@ -29,10 +29,9 @@ Upload an image from the file system:
 
 ![](./demo/demo2.gif)
 
-
 ## Dependencies
 
-I recommend you to use **neovim-0.7**, but in fact **neovim-0.5+** can runs it.
+I recommend you to use **neovim-0.7**.
 
 Besides that, you need to download **[picgo-core](https://github.com/PicGo/PicGo-Core)**, which is a command line tool.
 
@@ -78,6 +77,22 @@ use {
         require("nvim-picgo").setup()
     end
     }
+```
+
+Default configuration items:
+
+```
+{
+    -- method to informe
+    -- 1. notify
+    -- 2. echo
+    notice = "notify",
+    -- Whether the generated markdown link saves the upload name of the image
+    -- boolean
+    image_name = false,
+    -- debug mode
+    debug = false,
+}
 ```
 
 ## plugin command
