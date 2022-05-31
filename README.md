@@ -38,7 +38,7 @@ Besides that, you need to download **[picgo-core](https://github.com/PicGo/PicGo
 This is easy to do under arch:
 
 ```
-$ yay -S picgo-core
+$ npm install picgo -g
 ```
 
 ## Configure picgo image bed
