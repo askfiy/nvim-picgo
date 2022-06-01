@@ -60,8 +60,32 @@ $ picgo set uploader
 
 Or you can also configure manually:
 
-- Linux and Mac：`~/.config/picgo/config.json`
+- Linux and Mac：`~/.config/.picgo/config.json`
 - Windows：`C:\Users\youername\.picgo\config.json`
+
+Below is my picgo config file:
+
+```
+$ cat $HOME/.picgo/config.json
+
+{
+  "picBed": {
+    "uploader": "tcyun",
+    "current": "tcyun",
+    "tcyun": {
+      "secretId": "..",
+      "secretKey": "..",
+      "bucket": "images-1302522496",
+      "appId": "1302522496",
+      "area": "ap-nanjing",
+      "path": "img/",
+      "customUrl": "",
+      "version": "v5"
+    }
+  },
+  "picgoPlugins": {}
+}
+```
 
 ## Using plugins
 
