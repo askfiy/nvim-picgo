@@ -35,8 +35,6 @@ I recommend you to use **neovim-0.7**.
 
 Besides that, you need to download **[picgo-core](https://github.com/PicGo/PicGo-Core)**, which is a command line tool.
 
-This is easy to do under arch:
-
 ```
 $ npm install picgo -g
 ```
