@@ -44,6 +44,7 @@ local function callbackfn(job_id, data, _)
         if data[1]:match(err) then
             notice(false)
             vim.fn.jobstop(job_id)
+            return
         end
     end
 
