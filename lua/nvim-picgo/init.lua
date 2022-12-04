@@ -61,8 +61,7 @@ local function callbackfn(job_id, data, _)
 end
 
 function nvim_picgo.setup(conf)
-    local result = vim.fn.system("picgo -v")
-    if not result:match("^%d") then
+    if not vim.fn.executable("picgo") then
         vim.api.nvim_echo({ { "Missing picgo-core dependencies", "ErrorMsg" } }, true, {})
         return
     end
