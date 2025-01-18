@@ -39,6 +39,8 @@ Besides that, you need to download **[picgo-core](https://github.com/PicGo/PicGo
 $ npm install picgo -g
 ```
 
+Next, you need to install **[xclip](https://github.com/astrand/xclip)**.
+
 ## Configure picgo image bed
 
 First of all, you need to manually fill in your image bed configuration, and enter:
