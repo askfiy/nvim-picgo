@@ -7,7 +7,7 @@ local default_config = {
     notice = "notify",
     image_name = true,
     debug = false,
-    temporary_storage = true,
+    temporary_storage = vim.loop.os_uname().sysname == "Linux",
 }
 
 local sync_lock = false
