@@ -42,7 +42,7 @@ local function generate_temporary_file(mime_type)
     local temp_dir = os.getenv("TMPDIR")
         or os.getenv("TEMP")
         or os.getenv("TMP")
-        or "/tmp" 
+        or "/tmp"
 
     local path_separator = package.config:sub(1, 1) -- 获取路径分隔符
     random_filename = ("%s%simage-%s.%s"):format(
@@ -59,14 +59,14 @@ local function notice(state)
     if state then
         local msg = "Upload image success"
         if default_config.notice == "notify" then
-            vim.notify(msg, "info", { title = "Nvim-picgo" })
+            vim.notify(msg, vim.log.levels.INFO, { title = "Nvim-picgo" })
         else
             vim.api.nvim_echo({ { msg, "MoreMsg" } }, true, {})
         end
     else
         local msg = "Upload image failed"
         if default_config.notice == "notify" then
-            vim.notify(msg, "error", { title = "Nvim-picgo" })
+            vim.notify(msg, vim.log.levels.ERROR, { title = "Nvim-picgo" })
         else
             vim.api.nvim_echo({ { msg, "ErrorMsg" } }, true, {})
         end
@@ -87,7 +87,7 @@ local function stdout_callbackfn(job_id, data, _type)
     end
 
     if default_config.need_jsdeliver then
-      data[2] = to_jsdelivr_url(data[2])
+        data[2] = to_jsdelivr_url(data[2])
     end
 
     for _, err in ipairs(stop_jobs_message) do
@@ -125,7 +125,7 @@ local function onexit_callbackfn()
             local msg = "Error deleting temporary file: " .. random_filename
 
             if default_config.notice == "notify" then
-                vim.notify(msg, "error", { title = "Nvim-picgo" })
+                vim.notify(msg, vim.log.levels.ERROR, { title = "Nvim-picgo" })
             else
                 vim.api.nvim_echo({ { msg, "ErrorMsg" } }, true, {})
             end
@@ -141,7 +141,7 @@ local function sync_upload(callback)
             local msg = "Please wating upload done"
 
             if default_config.notice == "notify" then
-                vim.notify(msg, "error", { title = "Nvim-picgo" })
+                vim.notify(msg, vim.log.levels.ERROR, { title = "Nvim-picgo" })
             else
                 vim.api.nvim_echo({ { msg, "ErrorMsg" } }, true, {})
             end
@@ -197,10 +197,12 @@ function nvim_picgo.upload_clipboard()
     if default_config.temporary_storage then
         local allowed_types = { "png", "jpg", "gif" }
 
-        local command = { "xclip -selection clipboard -t image/%s -o 2>/dev/null; echo $?", "xclip -selection clipboard -t image/%s -o > %s" }
+        local command = { "xclip -selection clipboard -t image/%s -o 2>/dev/null; echo $?",
+            "xclip -selection clipboard -t image/%s -o > %s" }
 
         if is_wayland() then
-            command = { "wl-paste --list-types | grep -qi image/%s; echo $?", "wl-paste --no-newline --type image/%s > %s"}
+            command = { "wl-paste --list-types | grep -qi image/%s; echo $?",
+                "wl-paste --no-newline --type image/%s > %s" }
         end
 
         for _, mime_type in ipairs(allowed_types) do
@@ -231,7 +233,7 @@ function nvim_picgo.upload_clipboard()
 
         vim.notify(
             "Clipboard not found image",
-            "error",
+            vim.log.levels.ERROR,
             { title = "Nvim-picgo" }
         )
 
