@@ -8,6 +8,8 @@ local default_config = {
     image_name = true,
     debug = false,
     temporary_storage = vim.loop.os_uname().sysname == "Linux",
+    auto_insert = false,
+    need_jsdeliver = false,
 }
 
 local sync_lock = false
@@ -111,6 +113,12 @@ local function stdout_callbackfn(job_id, data, _type)
             markdown_image_link = string.format("![](%s)", data[2])
         end
         vim.fn.setreg(vim.v.register, markdown_image_link)
+
+
+        if (default_config.auto_insert) then
+            local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+            vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { markdown_image_link })
+        end
     end
 end
 
