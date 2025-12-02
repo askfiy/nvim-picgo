@@ -9,7 +9,7 @@ local default_config = {
     debug = false,
     temporary_storage = vim.loop.os_uname().sysname == "Linux",
     auto_insert = false,
-    need_jsdeliver = false,
+    copy_to_clipboard = true,
 }
 
 local sync_lock = false
@@ -112,7 +112,10 @@ local function stdout_callbackfn(job_id, data, _type)
         else
             markdown_image_link = string.format("![](%s)", data[2])
         end
-        vim.fn.setreg(vim.v.register, markdown_image_link)
+
+        if (default_config.copy_to_clipboard) then
+            vim.fn.setreg(vim.v.register, markdown_image_link)
+        end
 
 
         if (default_config.auto_insert) then
