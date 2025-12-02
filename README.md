@@ -116,6 +116,10 @@ Default configuration items:
     image_name = false,
     -- debug mode
     debug = false,
+    -- copy result to clipboard
+    copy_to_clipboard = true
+    -- insert result to current cursor position
+    auto_insert = false,
 }
 ```
 
